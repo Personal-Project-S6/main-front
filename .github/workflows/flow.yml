@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Dockerise
       id: docker
-      uses: main-front/actions/action@v1
+      uses: main-front/actions@v1
       with:
         who-to-greet: 'Mona the Octocat'
     # Use the output from the `hello` step
