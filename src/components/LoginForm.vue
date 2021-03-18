@@ -5,8 +5,8 @@
         <h4>Login</h4>
       </v-card-title>
       <v-form>
-        <v-text-field prepend-icon="person" name="Username" placeholder="Username"></v-text-field>
-        <v-text-field prepend-icon="lock" name="Password" placeholder="Password" type="password"></v-text-field>
+        <v-text-field name="Username" placeholder="Username"></v-text-field>
+        <v-text-field name="Password" placeholder="Password" type="password"></v-text-field>
         <br>
         <v-card-actions>
           <v-btn primary large block>Login</v-btn>

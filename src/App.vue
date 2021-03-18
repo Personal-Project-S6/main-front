@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/register">Register</router-link>
-    </div>
+    <v-toolbar dense flat prominent>
+      <v-toolbar-items>
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link> |
+        <router-link to="/login">Login</router-link> |
+        <router-link to="/register">Register</router-link>
+      </v-toolbar-items>
+    </v-toolbar>
     <router-view/>
   </div>
 </template>
