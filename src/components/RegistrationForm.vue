@@ -26,8 +26,7 @@ import Component from 'vue-class-component'
   name: 'RegistrationForm'
 })
 
-export default class RegistrationForm extends Vue {
-}
+export default class RegistrationForm extends Vue {}
 </script>
 
 <style scoped>

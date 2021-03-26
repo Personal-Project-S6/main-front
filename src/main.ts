@@ -6,6 +6,7 @@ import store from './store'
 import Vuetify from 'vuetify'
 import { Auth0Plugin } from '@/auth/auth'
 import { domain, clientId } from '../auth.config.json'
+import vuetify from './plugins/vuetify'
 
 Vue.use(Vuetify)
 Vue.use(Auth0Plugin, {
