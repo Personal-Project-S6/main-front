@@ -4,11 +4,12 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import Vuetify from 'vuetify'
+import VueI18n from 'vue-i18n'
 import { Auth0Plugin } from '@/auth/auth'
 import { domain, clientId } from '../auth.config.json'
-import vuetify from './plugins/vuetify'
 
 Vue.use(Vuetify)
+Vue.use(VueI18n)
 Vue.use(Auth0Plugin, {
   domain,
   clientId,
@@ -20,12 +21,31 @@ Vue.use(Auth0Plugin, {
     )
   }
 })
-
 Vue.config.productionTip = false
+
+const messages = {
+  en: {
+    message: {
+      mission: 'Mission'
+    }
+  },
+  nl: {
+    message: {
+      mission: 'Missie'
+    }
+  }
+}
+
+const i18n = new VueI18n({
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages
+})
 
 new Vue({
   vuetify: new Vuetify(),
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')
