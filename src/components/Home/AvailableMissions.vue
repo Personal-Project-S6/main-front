@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card max-width="30%" style="margin: auto auto">
+    <v-card max-width="60%" style="margin: auto auto">
       <v-card-title>{{ $tc("battle.mission", 2) }}</v-card-title>
       <v-list three-line>
         <template v-for="item in items">
@@ -32,52 +32,48 @@ export default class AvailableMissions extends Vue {
       id: 'TestMissionId1',
       name: 'Test Mission 1',
       description: 'Test Mission 1 description',
-      mission_avatar: 'https://www.w3schools.com/howto/img_avatar.png',
-      team: [
-        {
-          id: 'TestCharacterId1',
-          name: 'TestCharacterName1',
-          description: 'TestCharacterDescription1'
-        },
-        {
-          id: 'TestCharacterId2',
-          name: 'TestCharacterName2',
-          description: 'TestCharacterDescription2'
-        },
-        {
-          id: 'TestCharacterId3',
-          name: 'TestCharacterName3',
-          description: 'TestCharacterDescription3'
-        }
-      ]
+      mission_avatar: 'https://www.w3schools.com/howto/img_avatar.png'
     },
     {
       id: 'TestMissionId2',
       name: 'Test Mission 2',
       description: 'Test Mission 2 description',
-      mission_avatar: 'https://www.w3schools.com/w3images/avatar6.png',
-      team: [
-        {
-          id: 'TestCharacterId4',
-          name: 'TestCharacterName4',
-          description: 'TestCharacterDescription4'
-        },
-        {
-          id: 'TestCharacterId5',
-          name: 'TestCharacterName5',
-          description: 'TestCharacterDescription5'
-        },
-        {
-          id: 'TestCharacterId6',
-          name: 'TestCharacterName6',
-          description: 'TestCharacterDescription6'
-        }
-      ]
+      mission_avatar: 'https://www.w3schools.com/w3images/avatar6.png'
+    },
+    {
+      id: 'TestMissionId2',
+      name: 'Test Mission 2',
+      description: 'Test Mission 2 description',
+      mission_avatar: 'https://www.w3schools.com/w3images/avatar6.png'
+    },
+    {
+      id: 'TestMissionId1',
+      name: 'Test Mission 1',
+      description: 'Test Mission 1 description',
+      mission_avatar: 'https://www.w3schools.com/howto/img_avatar.png'
+    },
+    {
+      id: 'TestMissionId2',
+      name: 'Test Mission 2',
+      description: 'Test Mission 2 description',
+      mission_avatar: 'https://www.w3schools.com/w3images/avatar6.png'
     }
   ]
 }
 </script>
 
 <style scoped>
+html {
+  overflow: hidden;
+}
 
+.v-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.v-list-item {
+  flex-grow: 1;
+  overflow: auto;
+}
 </style>

@@ -9,6 +9,9 @@
           <team-display :is-enemy-team="true" :roster="testPlayerRoster"></team-display>
         </v-col>
       </v-row>
+      <v-row>
+        <player-battle-screen-collection></player-battle-screen-collection>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -17,10 +20,11 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 import TeamDisplay from '@/components/battle/TeamDisplay'
+import PlayerBattleScreenCollection from '@/components/battle/PlayerBattleScreenCollection'
 
 @Component({
   name: 'Battle',
-  components: { TeamDisplay }
+  components: { PlayerBattleScreenCollection, TeamDisplay }
 })
 export default class Battle extends Vue {
   testPlayerRoster =
