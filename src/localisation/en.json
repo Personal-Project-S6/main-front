@@ -5,6 +5,8 @@
   "battle" : {
     "mission" : "Mission | Missions",
     "enemy_team": "Opponents",
-    "player_team": "Your team"
+    "player_team": "Your team",
+    "add_character": "Add",
+    "remove_character": "Remove"
   }
 }

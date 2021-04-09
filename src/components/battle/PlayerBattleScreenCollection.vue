@@ -4,23 +4,25 @@
     <v-container>
       <v-row>
         <v-col v-for="item in testPlayerRoster" :key="item" :sm="1" :md="2" :lg="4">
-          <v-card>
-            <v-container>
-              <v-row>
-                <v-col cols="9">
-                  <v-card-title>{{ item.name }}</v-card-title>
-                  <v-card-actions float="right">
-                    <v-btn color="grey lighten-2">
-                      Add
-                    </v-btn>
-                  </v-card-actions>
-                </v-col>
-                <v-col cols="3">
-                  <v-img :src="item.character_avatar" max-height="100px" max-width="100px"></v-img>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card>
+          <v-hover v-slot="{ hover }">
+            <v-card>
+              <v-container>
+                <v-row>
+                  <v-col cols="9">
+                    <v-card-title>{{ item.name }}</v-card-title>
+                    <v-card-actions float="right">
+                      <v-btn v-if="hover" color="grey lighten-2">
+                        {{ $t("battle.add_character") }}
+                      </v-btn>
+                    </v-card-actions>
+                  </v-col>
+                  <v-col cols="3">
+                    <v-img :src="item.character_avatar" max-height="100px" max-width="100px"></v-img>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card>
+          </v-hover>
         </v-col>
       </v-row>
     </v-container>
