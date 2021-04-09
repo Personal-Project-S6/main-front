@@ -3,10 +3,10 @@
     <v-container>
       <v-row>
         <v-col>
-          <team-display></team-display>
+          <team-display :is-enemy-team="false"></team-display>
         </v-col>
         <v-col>
-          <team-display></team-display>
+          <team-display :is-enemy-team="true"></team-display>
         </v-col>
       </v-row>
     </v-container>

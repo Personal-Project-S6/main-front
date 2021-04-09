@@ -9,6 +9,7 @@ import { Auth0Plugin } from '@/auth/auth'
 import { domain, clientId } from '../auth.config.json'
 import en from '@/localisation/en.json'
 import nl from '@/localisation/nl.json'
+import VueRouter, { Route } from 'vue-router'
 
 Vue.use(Vuetify)
 Vue.use(VueI18n)
@@ -24,6 +25,13 @@ Vue.use(Auth0Plugin, {
   }
 })
 Vue.config.productionTip = false
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    $route: Route;
+    $router: VueRouter;
+  }
+}
 
 const languages = {
   en: en,

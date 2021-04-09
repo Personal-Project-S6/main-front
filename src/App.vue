@@ -10,7 +10,7 @@
       <v-toolbar-title>
         <v-btn href="/">{{ $t("general.app_title") }}</v-btn>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-spacer/>
       <v-btn v-if="!$auth.isAuthenticated" icon @click="login">
         <v-icon>mdi-login</v-icon>
       </v-btn>

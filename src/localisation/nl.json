@@ -3,6 +3,8 @@
     "app_title": "Persoonlijk Project S6"
   },
   "battle" : {
-    "mission" : "Missie | Missies"
+    "mission" : "Missie | Missies",
+    "enemy_team": "Tegenstanders",
+    "player_team": "Jouw team"
   }
 }
