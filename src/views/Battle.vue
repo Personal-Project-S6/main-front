@@ -1,6 +1,15 @@
 <template>
   <div>
-    <team-display></team-display>
+    <v-container>
+      <v-row>
+        <v-col>
+          <team-display></team-display>
+        </v-col>
+        <v-col>
+          <team-display></team-display>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
