@@ -3,14 +3,8 @@
     <v-card max-width="30%" style="margin: auto auto">
       <v-list three-line>
         <template v-for="item in items">
-          <v-subheader
-            v-if="item.name"
-            :key="item.name"
-            v-text="item.name"
-          ></v-subheader>
           <v-list-item
-            v-else
-            :key="item.title"
+            :key="item.name"
           >
             <v-list-item-avatar>
               <v-img :src="item.mission_avatar"></v-img>
@@ -62,7 +56,7 @@ export default class AvailableMissions extends Vue {
       id: 'TestMissionId2',
       name: 'Test Mission 2',
       description: 'Test Mission 2 description',
-      mission_avatar: 'https://www.w3schools.com/howto/img_avatar.png',
+      mission_avatar: 'https://www.w3schools.com/w3images/avatar6.png',
       team: [
         {
           id: 'TestCharacterId4',
