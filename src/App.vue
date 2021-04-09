@@ -8,7 +8,7 @@
     >
     <v-toolbar dense elevation="0" color="#D6DBDF">
       <v-toolbar-title>
-        <v-btn href="/">{{ $t("localisation.general.app_title") }}</v-btn>
+        <v-btn href="/">{{ $t("general.app_title") }}</v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn v-if="!$auth.isAuthenticated" icon @click="login">

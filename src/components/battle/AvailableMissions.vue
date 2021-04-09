@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-card max-width="30%" style="margin: auto auto">
+      <v-card-title>{{ $tc("battle.mission", 2) }}</v-card-title>
       <v-list three-line>
         <template v-for="item in items">
           <v-list-item :key="item.name">
