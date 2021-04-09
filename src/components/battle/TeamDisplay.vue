@@ -1,6 +1,6 @@
 <template>
-  <div max-width="30%">
-    <v-card max-width="30%" style="margin: auto auto">
+  <div>
+    <v-card style="margin: auto auto">
       <v-card-title v-if="isEnemyTeam">{{ $t("battle.enemy_team") }}</v-card-title>
       <v-card-title v-else>{{ $t("battle.player_team") }}</v-card-title>
       <v-list three-line>

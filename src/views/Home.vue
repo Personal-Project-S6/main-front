@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import AvailableMissions from '@/components/battle/AvailableMissions.vue'
+import AvailableMissions from '@/components/Home/AvailableMissions.vue'
 
 @Component({
   components: { AvailableMissions }
