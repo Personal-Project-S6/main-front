@@ -1,5 +1,8 @@
 {
   "localisation" : {
+    "general": {
+      "app_title": "Persoonlijk Project S6"
+    },
     "battle" : {
       "mission" : "Missie"
     }

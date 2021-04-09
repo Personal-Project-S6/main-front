@@ -7,6 +7,8 @@ import Vuetify from 'vuetify'
 import VueI18n from 'vue-i18n'
 import { Auth0Plugin } from '@/auth/auth'
 import { domain, clientId } from '../auth.config.json'
+import en from '@/localisation/en.json'
+import nl from '@/localisation/nl.json'
 
 Vue.use(Vuetify)
 Vue.use(VueI18n)
@@ -23,18 +25,12 @@ Vue.use(Auth0Plugin, {
 })
 Vue.config.productionTip = false
 
-const messages = {
-  en: {
-    message: {
-      mission: 'Mission'
-    }
-  },
-  nl: {
-    message: {
-      mission: 'Missie'
-    }
-  }
+const languages = {
+  en: en,
+  nl: nl
 }
+
+const messages = Object.assign(languages)
 
 const i18n = new VueI18n({
   locale: 'en',
