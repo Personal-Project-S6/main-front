@@ -3,9 +3,7 @@
     <v-card max-width="30%" style="margin: auto auto">
       <v-list three-line>
         <template v-for="item in items">
-          <v-list-item
-            :key="item.name"
-          >
+          <v-list-item :key="item.name">
             <v-list-item-avatar>
               <v-img :src="item.mission_avatar"></v-img>
             </v-list-item-avatar>

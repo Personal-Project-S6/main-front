@@ -6,15 +6,10 @@
     height="5%"
     tile
     >
-    <v-toolbar dense>
-      <v-toolbar-title>Personal Project S6</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <h4>
-        <router-link to="/battle">{{ $t("message.mission") }}</router-link>
-      </h4>
-      <h4>
-        <router-link></router-link>
-      </h4>
+    <v-toolbar dense elevation="0" color="#D6DBDF">
+      <v-toolbar-title>
+        <v-btn href="/">Personal Project S6</v-btn>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn v-if="!$auth.isAuthenticated" icon @click="login">
         <v-icon>mdi-login</v-icon>
@@ -30,6 +25,7 @@
       </v-btn>
     </v-toolbar>
     </v-card>
+    <br>
     <router-view></router-view>
   </v-app>
 </template>

@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1>Wots crackin</h1>
-    <br>
     <available-missions></available-missions>
   </div>
 </template>
