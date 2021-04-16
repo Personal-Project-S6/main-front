@@ -20,11 +20,11 @@ jobs:
       # - run: npm run test:e2e
 
       - name: Build container image
-          uses: docker/build-push-action@v1
-          with:
-            username: ${{ github.actor }}
-            password: ${{ secrets.GITHUB_TOKEN }}
-            registry: docker.pkg.github.com
-            repository: ${{ github.repository }}/octo-image
-            tag_with_sha: true
-            tag_with_ref: true
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: ${{ github.repository }}/octo-image
+          tag_with_sha: true
+          tag_with_ref: true
