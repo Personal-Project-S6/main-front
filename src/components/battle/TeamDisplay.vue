@@ -5,14 +5,14 @@
         <v-card-title v-else>{{ $t("battle.player_team") }}</v-card-title>
         <v-list three-line>
           <template v-for="item in roster">
-            <v-hover v-slot="{ hover }" :key="item.name">
+            <v-hover v-slot="{ hover }" :key="item.Name">
               <v-list-item>
                 <v-list-item-avatar>
-                  <v-img :src="item.character_avatar"></v-img>
+                  <v-img :src="item.ImageUrl"></v-img>
                 </v-list-item-avatar>
                 <v-list-item-content>
-                  <v-list-item-title v-html="item.name"></v-list-item-title>
-                  <v-list-item-subtitle v-html="item.description"></v-list-item-subtitle>
+                  <v-list-item-title v-html="item.Name"></v-list-item-title>
+                  <v-list-item-subtitle v-html="item.Description"></v-list-item-subtitle>
                 </v-list-item-content>
                 <v-list-item-action v-if="!isEnemyTeam">
                   <v-btn color="grey lighten-2" v-if="hover">

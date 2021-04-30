@@ -3,22 +3,22 @@
     <v-container>
       <v-row>
         <v-col>
-          <team-display :is-enemy-team="false" :roster="testPlayerRoster"></team-display>
+          <team-display :is-enemy-team="false" :roster="playerRoster"></team-display>
         </v-col>
         <v-col>
-          <team-display :is-enemy-team="true" :roster="testPlayerRoster"></team-display>
+          <team-display :is-enemy-team="true" :roster="enemyRoster"></team-display>
         </v-col>
       </v-row>
       <v-row>
-        <player-battle-screen-collection></player-battle-screen-collection>
+        <player-battle-screen-collection @characterAdded="this.addCharacter"></player-battle-screen-collection>
       </v-row>
     </v-container>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
-import { Component } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
 import TeamDisplay from '@/components/battle/TeamDisplay'
 import PlayerBattleScreenCollection from '@/components/battle/PlayerBattleScreenCollection'
 
@@ -27,33 +27,18 @@ import PlayerBattleScreenCollection from '@/components/battle/PlayerBattleScreen
   components: { PlayerBattleScreenCollection, TeamDisplay }
 })
 export default class Battle extends Vue {
-  testPlayerRoster =
-  [
-    {
-      name: 'TestPlayerCharName1',
-      character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
-    },
-    {
-      name: 'TestPlayerCharName2',
-      character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
-    },
-    {
-      name: 'TestPlayerCharName3',
-      character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
-    },
-    {
-      name: 'TestPlayerCharName4',
-      character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
-    },
-    {
-      name: 'TestPlayerCharName5',
-      character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
-    },
-    {
-      name: 'TestPlayerCharName6',
-      character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
+  @Prop()
+  private selectedMission = {}
+
+  private playerRoster = [{}]
+
+  addCharacter (object: Record<string, unknown>) {
+    console.log(object)
+    if (['dexterity', 'strength', 'intellect'].some(x => x === object.Type)) {
+      this.playerRoster.push(object)
+      console.log(object)
     }
-  ]
+  }
 }
 </script>
 
