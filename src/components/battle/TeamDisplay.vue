@@ -15,7 +15,7 @@
                   <v-list-item-subtitle v-html="item.Description"></v-list-item-subtitle>
                 </v-list-item-content>
                 <v-list-item-action v-if="!isEnemyTeam">
-                  <v-btn color="grey lighten-2" v-if="hover">
+                  <v-btn @click="removeCharacter(item)" color="grey lighten-2" v-if="hover">
                     {{ $t("battle.remove_character") }}
                   </v-btn>
                 </v-list-item-action>
@@ -40,6 +40,13 @@ export default class TeamDisplay extends Vue {
 
   @Prop()
   private roster: [];
+
+  removeCharacter (object: never) {
+    const index = this.roster.indexOf(object, 0)
+    if (index > -1) {
+      this.roster.splice(index, 1)
+    }
+  }
 }
 </script>
 
