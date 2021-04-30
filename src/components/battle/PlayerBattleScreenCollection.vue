@@ -1,15 +1,15 @@
 <template>
   <!-- TODO: FIX SCALING (sm-md-lg)-->
   <div>
-    <v-container>
+    <v-container v-if="playerRoster">
       <v-row>
-        <v-col v-for="item in testPlayerRoster" :key="item" :sm="1" :md="2" :lg="4">
+        <v-col v-for="item in playerRoster" :key="item.name" :sm="1" :md="2" :lg="4">
           <v-hover v-slot="{ hover }">
             <v-card>
               <v-container>
                 <v-row>
                   <v-col cols="9">
-                    <v-card-title>{{ item.name }}</v-card-title>
+                    <v-card-title>{{ item.Name }}</v-card-title>
                     <v-card-actions float="right">
                       <v-btn v-if="hover" color="grey lighten-2">
                         {{ $t("battle.add_character") }}
@@ -17,7 +17,7 @@
                     </v-card-actions>
                   </v-col>
                   <v-col cols="3">
-                    <v-img :src="item.character_avatar" max-height="100px" max-width="100px"></v-img>
+                    <v-img :src="item.ImageUrl" max-height="200px" max-width="200px"></v-img>
                   </v-col>
                 </v-row>
               </v-container>
@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
@@ -37,33 +37,17 @@ import Component from 'vue-class-component'
   name: 'PlayerBattleScreenCollection'
 })
 export default class PlayerBattleScreenCollection extends Vue {
-  testPlayerRoster =
-    [
-      {
-        name: 'TestPlayerCharName1',
-        character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
-      },
-      {
-        name: 'TestPlayerCharName2',
-        character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
-      },
-      {
-        name: 'TestPlayerCharName3',
-        character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
-      },
-      {
-        name: 'TestPlayerCharName4',
-        character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
-      },
-      {
-        name: 'TestPlayerCharName5',
-        character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
-      },
-      {
-        name: 'TestPlayerCharName6',
-        character_avatar: 'https://previews.123rf.com/images/drawkman/drawkman1709/drawkman170900317/85465273-cartoon-monster-face-vector-halloween-orange-cool-monster-avatar-with-wide-smile-prints-design-for-t.jpg'
-      }
-    ]
+  private playerRoster = []
+
+  mounted () {
+    this.getPlayerRoster()
+  }
+
+  getPlayerRoster () {
+    this.$http.get(`${this.$store.getters.g_gateway}/Character`).then((response) => {
+      console.log(this.playerRoster = response.data)
+    })
+  }
 }
 </script>
 

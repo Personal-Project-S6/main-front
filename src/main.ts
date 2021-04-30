@@ -10,8 +10,11 @@ import { domain, clientId } from '../auth.config.json'
 import en from '@/localisation/en.json'
 import nl from '@/localisation/nl.json'
 import VueRouter, { Route } from 'vue-router'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 Vue.use(Vuetify)
+Vue.use(VueAxios, axios)
 Vue.use(VueI18n)
 Vue.use(Auth0Plugin, {
   domain,

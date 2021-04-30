@@ -40,10 +40,6 @@ export default class TeamDisplay extends Vue {
 
   @Prop()
   private roster: [];
-
-  mounted () {
-    console.log('Is enemy team? ' + this.isEnemyTeam)
-  }
 }
 </script>
 
