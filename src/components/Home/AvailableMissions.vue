@@ -3,14 +3,14 @@
     <v-card max-width="60%" style="margin: auto auto">
       <v-card-title>{{ $tc("battle.mission", 2) }}</v-card-title>
       <v-list three-line>
-        <template v-for="item in items">
-          <v-list-item :key="item.name" @click="$router.push('Battle')">
+        <template v-for="item in missions">
+          <v-list-item :key="item.Name" @click="setEnemy(item.Roster)">
             <v-list-item-avatar>
-              <v-img :src="item.mission_avatar"></v-img>
+              <v-img :src="item.MissionImage"></v-img>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title v-html="item.name"></v-list-item-title>
-              <v-list-item-subtitle v-html="item.description"></v-list-item-subtitle>
+              <v-list-item-title v-html="item.Name"></v-list-item-title>
+              <v-list-item-subtitle v-html="item.Description"></v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </template>
@@ -27,38 +27,22 @@ import Vue from 'vue'
   name: 'AvailableMissions'
 })
 export default class AvailableMissions extends Vue {
-  items = [
-    {
-      id: 'TestMissionId1',
-      name: 'Test Mission 1',
-      description: 'Test Mission 1 description',
-      mission_avatar: 'https://www.w3schools.com/howto/img_avatar.png'
-    },
-    {
-      id: 'TestMissionId2',
-      name: 'Test Mission 2',
-      description: 'Test Mission 2 description',
-      mission_avatar: 'https://www.w3schools.com/w3images/avatar6.png'
-    },
-    {
-      id: 'TestMissionId2',
-      name: 'Test Mission 2',
-      description: 'Test Mission 2 description',
-      mission_avatar: 'https://www.w3schools.com/w3images/avatar6.png'
-    },
-    {
-      id: 'TestMissionId1',
-      name: 'Test Mission 1',
-      description: 'Test Mission 1 description',
-      mission_avatar: 'https://www.w3schools.com/howto/img_avatar.png'
-    },
-    {
-      id: 'TestMissionId2',
-      name: 'Test Mission 2',
-      description: 'Test Mission 2 description',
-      mission_avatar: 'https://www.w3schools.com/w3images/avatar6.png'
-    }
-  ]
+  private missions = {}
+
+  mounted () {
+    this.getNewMissions()
+  }
+
+  getNewMissions () {
+    this.$http.get(`${this.$store.getters.g_gateway}/Mission`).then((response) => {
+      console.log(this.missions = response.data)
+    })
+  }
+
+  setEnemy (enemyTeam: any) {
+    this.$store.state.enemyTeam = enemyTeam
+    this.$router.push('Battle')
+  }
 }
 </script>
 

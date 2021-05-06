@@ -6,7 +6,7 @@
           <team-display :is-enemy-team="false" :roster="playerRoster"></team-display>
         </v-col>
         <v-col>
-          <team-display :is-enemy-team="true" :roster="enemyRoster"></team-display>
+          <team-display :is-enemy-team="true" :roster="selectedMission.roster"></team-display>
         </v-col>
       </v-row>
       <v-row>

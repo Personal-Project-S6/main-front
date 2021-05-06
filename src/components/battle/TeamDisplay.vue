@@ -39,7 +39,13 @@ export default class TeamDisplay extends Vue {
   private isEnemyTeam: boolean;
 
   @Prop()
-  private roster: [];
+  private roster = [];
+
+  mounted () {
+    if (this.isEnemyTeam) {
+      this.roster = this.$store.getters.g_enemyTeam
+    }
+  }
 
   removeCharacter (object: never) {
     const index = this.roster.indexOf(object, 0)
