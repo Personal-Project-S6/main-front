@@ -4,8 +4,8 @@
         <v-card-title v-if="isEnemyTeam">{{ $t("battle.enemy_team") }}</v-card-title>
         <v-card-title v-else>{{ $t("battle.player_team") }}</v-card-title>
         <v-list three-line>
-          <template v-for="item in roster">
-            <v-hover v-slot="{ hover }" :key="item.Name">
+          <template v-for="(item,index) in roster">
+            <v-hover v-slot="{ hover }" :key="index">
               <v-list-item>
                 <v-list-item-avatar>
                   <v-img :src="item.ImageUrl"></v-img>
@@ -41,13 +41,9 @@ export default class TeamDisplay extends Vue {
   @Prop()
   private roster = [];
 
-  mounted () {
-    if (this.isEnemyTeam) {
-      this.roster = this.$store.getters.g_enemyTeam
-    }
-  }
-
   removeCharacter (object: never) {
+    if (this.isEnemyTeam) { return }
+
     const index = this.roster.indexOf(object, 0)
     if (index > -1) {
       this.roster.splice(index, 1)

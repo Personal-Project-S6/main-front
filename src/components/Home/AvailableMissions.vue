@@ -3,8 +3,8 @@
     <v-card max-width="60%" style="margin: auto auto">
       <v-card-title>{{ $tc("battle.mission", 2) }}</v-card-title>
       <v-list three-line>
-        <template v-for="item in missions">
-          <v-list-item :key="item.Name" @click="setEnemy(item.Roster)">
+        <template v-for="(item, index) in missions">
+          <v-list-item :key="index" @click="setEnemy(item.Roster)">
             <v-list-item-avatar>
               <v-img :src="item.MissionImage"></v-img>
             </v-list-item-avatar>

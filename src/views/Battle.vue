@@ -1,12 +1,13 @@
 <template>
   <div>
+    <!-- TODO: FIX ENEMY ROSTER NOT BEING DISPLAYED TILL A CHARACTER IS ADDED TO PLAYER ROSTER-->
     <v-container>
       <v-row>
         <v-col>
           <team-display :is-enemy-team="false" :roster="playerRoster"></team-display>
         </v-col>
         <v-col>
-          <team-display :is-enemy-team="true" :roster="selectedMission.roster"></team-display>
+          <team-display :is-enemy-team="true" :roster="this.$store.getters.g_enemyTeam"></team-display>
         </v-col>
       </v-row>
       <v-row>
@@ -27,16 +28,11 @@ import PlayerBattleScreenCollection from '@/components/battle/PlayerBattleScreen
   components: { PlayerBattleScreenCollection, TeamDisplay }
 })
 export default class Battle extends Vue {
-  @Prop()
-  private selectedMission = {}
+  private playerRoster = []
 
-  private playerRoster = [{}]
-
-  addCharacter (object: Record<string, unknown>) {
-    console.log(object)
-    if (['dexterity', 'strength', 'intellect'].some(x => x === object.Type)) {
+  addCharacter (object) {
+    if (['dexterity', 'strength', 'intellect'].some(x => x === object.Type) && this.playerRoster.length < 6) {
       this.playerRoster.push(object)
-      console.log(object)
     }
   }
 }
