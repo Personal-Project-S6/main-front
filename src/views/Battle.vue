@@ -20,15 +20,15 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component, Prop } from 'vue-property-decorator'
-import TeamDisplay from '@/components/battle/TeamDisplay'
-import PlayerBattleScreenCollection from '@/components/battle/PlayerBattleScreenCollection'
+import TeamDisplay from '@/components/battle/TeamDisplay.vue'
+import PlayerBattleScreenCollection from '@/components/battle/PlayerBattleScreenCollection.vue'
 
 @Component({
   name: 'Battle',
   components: { PlayerBattleScreenCollection, TeamDisplay }
 })
 export default class Battle extends Vue {
-  private playerRoster = []
+  private playerRoster = [{}]
 
   addCharacter (object) {
     if (['dexterity', 'strength', 'intellect'].some(x => x === object.Type) && this.playerRoster.length < 6) {
