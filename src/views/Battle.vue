@@ -42,11 +42,15 @@ export default class Battle extends Vue {
   }
 
   sendOnMission () {
-    console.log('Sent on mission')
-    this.$store.state.mission.PlayerRoster = this.playerRoster
-    this.$http.post(`${this.$store.getters.g_gateway}/Mission`, this.$store.getters.g_mission).then((response) => {
-      console.log(response.data)
-    })
+    if (this.playerRoster.length === 6) {
+      console.log('Sent on mission')
+      this.$store.state.mission.PlayerRoster = this.playerRoster
+      this.$http.post(`${this.$store.getters.g_gateway}/Mission`, this.$store.getters.g_mission).then((response) => {
+        console.log(response.data)
+      })
+    } else {
+      alert('Player roster must contain 6 characters.')
+    }
   }
 }
 </script>
