@@ -8,7 +8,7 @@ export default new Vuex.Store({
     userId: '',
     userName: '',
     gateway: 'https://localhost:5001/api',
-    enemyTeam: {}
+    mission: {}
   },
   mutations: {
     userId (state, v) {
@@ -28,8 +28,8 @@ export default new Vuex.Store({
     g_gateway (state) {
       return state.gateway
     },
-    g_enemyTeam (state) {
-      return state.enemyTeam
+    g_mission (state) {
+      return state.mission
     }
   },
   actions: {

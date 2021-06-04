@@ -43,7 +43,7 @@ export default class TeamDisplay extends Vue {
 
   mounted () {
     if (this.isEnemyTeam) {
-      this.roster = this.$store.getters.g_enemyTeam
+      this.roster = this.$store.getters.g_mission.EnemyRoster
     }
   }
 
@@ -53,7 +53,7 @@ export default class TeamDisplay extends Vue {
     console.log(this.roster)
 
     if (this.isEnemyTeam) {
-      this.roster = this.$store.getters.g_enemyTeam
+      this.roster = this.$store.getters.g_mission.EnemyRoster
     }
   }
 
