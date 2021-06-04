@@ -49,7 +49,7 @@ export default class PlayerBattleScreenCollection extends Vue {
 
   getPlayerRoster () {
     this.$http.get(`${this.$store.getters.g_gateway}/Character`).then((response) => {
-      console.log(this.playerRoster = response.data)
+      this.playerRoster = response.data
     })
   }
 }

@@ -4,10 +4,15 @@
     <v-container>
       <v-row>
         <v-col>
+          <v-btn>Send on mission</v-btn>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
           <team-display :is-enemy-team="false" :roster="playerRoster"></team-display>
         </v-col>
         <v-col>
-          <team-display :is-enemy-team="true" :roster="this.$store.getters.g_enemyTeam"></team-display>
+          <team-display :is-enemy-team="true"></team-display>
         </v-col>
       </v-row>
       <v-row>
@@ -19,7 +24,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Component, Prop } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
 import TeamDisplay from '@/components/battle/TeamDisplay.vue'
 import PlayerBattleScreenCollection from '@/components/battle/PlayerBattleScreenCollection.vue'
 

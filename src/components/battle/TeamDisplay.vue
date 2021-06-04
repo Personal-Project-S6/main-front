@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Component, Prop } from 'vue-property-decorator'
+import { Component, Prop, Watch } from 'vue-property-decorator'
 
 @Component({
   name: 'TeamDisplay'
@@ -41,7 +41,24 @@ export default class TeamDisplay extends Vue {
   @Prop()
   private roster = [];
 
-  removeCharacter (object: never) {
+  mounted () {
+    if (this.isEnemyTeam) {
+      this.roster = this.$store.getters.g_enemyTeam
+    }
+  }
+
+  @Watch('roster')
+  onRosterChanged () {
+    console.log(`Roster: (enemyTeam) ${this.isEnemyTeam}`)
+    console.log(this.roster)
+
+    if (this.isEnemyTeam) {
+      this.roster = this.$store.getters.g_enemyTeam
+    }
+  }
+
+  removeCharacter = (object: never) => {
+    console.log('Removing character')
     if (this.isEnemyTeam) { return }
 
     const index = this.roster.indexOf(object, 0)

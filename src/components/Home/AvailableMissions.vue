@@ -4,7 +4,7 @@
       <v-card-title>{{ $tc("battle.mission", 2) }}</v-card-title>
       <v-list three-line>
         <template v-for="(item, index) in missions">
-          <v-list-item :key="index" @click="setEnemy(item.Roster)">
+          <v-list-item :key="index" @click="setEnemy(item.EnemyRoster)">
             <v-list-item-avatar>
               <v-img :src="item.MissionImage"></v-img>
             </v-list-item-avatar>
