@@ -12,6 +12,7 @@ import nl from '@/localisation/nl.json'
 import VueRouter, { Route } from 'vue-router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import * as SignalR from '@microsoft/signalr'
 
 Vue.use(Vuetify)
 Vue.use(VueAxios, axios)
@@ -48,6 +49,10 @@ const i18n = new VueI18n({
   fallbackLocale: 'en',
   messages
 })
+
+const connection = new SignalR.HubConnectionBuilder().withUrl('https://localhost:5001/wss/BattleHub').build()
+connection.on('receiveBattleOutcome', args => console.log(args))
+connection.start().then(() => console.log('SignalR innit m8'))
 
 new Vue({
   vuetify: new Vuetify(),

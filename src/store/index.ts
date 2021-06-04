@@ -8,7 +8,8 @@ export default new Vuex.Store({
     userId: '',
     userName: '',
     gateway: 'https://localhost:5001/api',
-    mission: {}
+    mission: {},
+    resolvedMissions: []
   },
   mutations: {
     userId (state, v) {
