@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
@@ -20,18 +20,14 @@ jobs:
       - run: npm run build
       # - run: npm run test:e2e
 
-      - name: Build container image
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: personal-project-s6/main-front/main-front-image
-          tag_with_sha: true
-          tag_with_ref: true
+      - name: Docker login
+        run: docker login ghcr.io -u teaguemurm -p ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker build
+        run: docker build -t ghcr.io/personal-project-s6/main-front/main-front-image:$GITHUB_SHA -f Dockerfile .;
   push_to_registries:
     name: Push Docker image to multiple registries
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     permissions:
       packages: write
       contents: read
@@ -43,19 +39,18 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Log in to GitHub Docker Registry
-        uses: docker/login-action@v1
-        with:
-          registry: docker.pkg.github.com
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Push to Docker Hub
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: teaguemm/main-front:latest
-      - name: Build container image
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: docker.pkg.github.com/personal-project-s6/main-front/main-front-image:latest
+      - name: Docker login
+        run: docker login ghcr.io -u teaguemurm -p ${{ secrets.GITHUB_TOKEN }}
+      - name: Docker publish
+        run: docker push ghcr.io/personal-project-s6/main-front/main-front-image:$GITHUB_SHA
+
+      - name: Setup k8s config
+        run: |
+          mkdir -p /home/ubuntu/.kube
+          echo "${{ secrets.KUBECONFIG }}" >> /home/ubuntu/.kube/config
+
+      - name: Install helm3
+        run: sudo snap install helm --classic
+
+      - name: Deploy microservice
+        run: helm upgrade main-front-image ./k8s -i -n pps6 --set tag=${{ github.sha }} --kubeconfig '/home/ubuntu/.kube/config'

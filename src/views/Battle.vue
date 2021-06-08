@@ -45,6 +45,7 @@ export default class Battle extends Vue {
     if (this.playerRoster.length === 6) {
       console.log('Sent on mission')
       this.$store.state.mission.PlayerRoster = this.playerRoster
+      console.log(this.$store.state.mission)
       this.$http.post(`${this.$store.getters.g_gateway}/Mission`, this.$store.getters.g_mission).then((response) => {
         console.log(response.data)
       })

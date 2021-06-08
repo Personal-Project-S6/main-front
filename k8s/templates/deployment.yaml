@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-deployment
+  namespace: pps6
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+      tier: frontend
+  replicas: 1
+  template:
+    metadata:
+      name: {{ .Chart.Name }}
+      namespace: pps6
+      labels:
+        app: {{ .Chart.Name }}
+        tier: frontend
+    spec:
+      imagePullSecrets:
+      - name: ghcr.io
+      containers:
+      - name: {{ .Chart.Name }}
+        image: ghcr.io/personal-project-s6/main-front/main-front-image:{{.Values.tag}}
+        ports:
+        - containerPort: 80
