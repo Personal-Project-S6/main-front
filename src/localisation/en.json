@@ -7,6 +7,7 @@
     "enemy_team": "Opponents",
     "player_team": "Your team",
     "add_character": "Add",
-    "remove_character": "Remove"
+    "remove_character": "Remove",
+    "reports": "Reports"
   }
 }

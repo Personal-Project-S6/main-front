@@ -33,6 +33,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+import * as SignalR from '@microsoft/signalr'
 
 @Component({
   name: 'App'
@@ -56,6 +57,31 @@ export default class App extends Vue {
     } else {
       this.$i18n.locale = 'en'
     }
+  }
+
+  mounted () {
+    this.setupSignalR()
+  }
+
+  setupSignalR () {
+    const connection = new SignalR.HubConnectionBuilder().withUrl('https://localhost:5001/wss/BattleHub').build()
+    connection.on('receiveBattleOutcome', args => {
+      this.$store.state.battleReports.push(args)
+      console.log(this.$store.getters.g_battleReports)
+
+      if (localStorage.getItem('battleReports')) {
+        const currentReports = JSON.parse(localStorage.getItem('battleReports') || '{}')
+        for (const item in this.$store.getters.g_battleReports) {
+          currentReports.push(item)
+          localStorage.setItem('battleReports', JSON.stringify(currentReports))
+        }
+      } else {
+        localStorage.setItem('battleReports', JSON.stringify(this.$store.getters.g_battleReports))
+      }
+
+      console.log(localStorage.battleReports)
+    })
+    connection.start().then(() => console.log('SignalR connected'))
   }
 }
 </script>

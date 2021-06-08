@@ -1,15 +1,25 @@
 <template>
   <div>
-    <available-missions></available-missions>
+    <v-container>
+      <v-row>
+        <v-col cols="6">
+          <available-missions></available-missions>
+        </v-col>
+        <v-col cols="6">
+          <battle-reports></battle-reports>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import AvailableMissions from '@/components/Home/AvailableMissions.vue'
+import BattleReports from '@/components/Home/BattleReports.vue'
 
 @Component({
-  components: { AvailableMissions }
+  components: { BattleReports, AvailableMissions }
 })
 export default class Home extends Vue {}
 </script>

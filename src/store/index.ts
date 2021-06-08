@@ -9,7 +9,8 @@ export default new Vuex.Store({
     userName: '',
     gateway: 'https://localhost:5001/api',
     mission: {},
-    resolvedMissions: []
+    resolvedMissions: [],
+    battleReports: []
   },
   mutations: {
     userId (state, v) {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     g_mission (state) {
       return state.mission
+    },
+    g_battleReports (state) {
+      return state.battleReports
     }
   },
   actions: {
