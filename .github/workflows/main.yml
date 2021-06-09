@@ -29,10 +29,10 @@ jobs:
       - name: Docker publish
         run: docker push ghcr.io/personal-project-s6/main-front/main-front-image:$GITHUB_SHA
 
-      - name: Setup k8s config
-        run: |
-          mkdir -p /home/ubuntu/.kube
-          echo "${{ secrets.KUBECONFIG }}" >> /home/ubuntu/.kube/config
+#      - name: Setup k8s config
+#        run: |
+#          mkdir -p /home/ubuntu/.kube
+#          echo "${{ secrets.KUBECONFIG }}" >> /home/ubuntu/.kube/config
 
       - name: Install helm3
         run: sudo snap install helm --classic
