@@ -5,7 +5,6 @@ metadata:
   namespace: pps6
 spec:
   rules:
-#  - host: tmm-project.verhaarsolutions.nl
     - host: main-front.teaguemm.com
     http:
       paths:
