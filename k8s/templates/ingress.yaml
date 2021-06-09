@@ -5,7 +5,7 @@ metadata:
   namespace: pps6
 spec:
   rules:
-    - host: main-front.teaguemm.com
+  - host: main-front.teaguemm.com
     http:
       paths:
       - path: /
