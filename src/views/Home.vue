@@ -10,6 +10,7 @@
         </v-col>
       </v-row>
     </v-container>
+    <cookie-consent></cookie-consent>
   </div>
 </template>
 
@@ -17,9 +18,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import AvailableMissions from '@/components/Home/AvailableMissions.vue'
 import BattleReports from '@/components/Home/BattleReports.vue'
+import CookieConsent from '@/components/Home/CookieConsent.vue'
 
 @Component({
-  components: { BattleReports, AvailableMissions }
+  components: { CookieConsent, BattleReports, AvailableMissions }
 })
 export default class Home extends Vue {}
 </script>
