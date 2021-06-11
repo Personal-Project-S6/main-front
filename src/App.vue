@@ -66,17 +66,22 @@ export default class App extends Vue {
   setupSignalR () {
     const connection = new SignalR.HubConnectionBuilder().withUrl('https://localhost:5001/wss/BattleHub').build()
     connection.on('receiveBattleOutcome', args => {
-      this.$store.state.battleReports.push(args)
-      console.log(this.$store.getters.g_battleReports)
-
+      console.log('Response: ')
+      console.log(args)
+      // If there are already reports stored
       if (localStorage.getItem('battleReports')) {
-        const currentReports = JSON.parse(localStorage.getItem('battleReports') || '{}')
-        for (const item in this.$store.getters.g_battleReports) {
-          currentReports.push(item)
-          localStorage.setItem('battleReports', JSON.stringify(currentReports))
+        const currentItems = JSON.parse(localStorage.getItem('battleReports') || '{}')
+        const updatedReports = [{}]
+
+        for (const item in currentItems) {
+          updatedReports.push(item)
         }
+        updatedReports.push(args)
+
+        localStorage.setItem('battleReports', JSON.stringify(updatedReports))
       } else {
-        localStorage.setItem('battleReports', JSON.stringify(this.$store.getters.g_battleReports))
+        const report = { args }
+        localStorage.setItem('battleReports', JSON.stringify(report))
       }
 
       console.log(localStorage.battleReports)
