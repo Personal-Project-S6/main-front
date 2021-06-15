@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar v-model="snackbar" :timeout="5000">
+  <v-snackbar v-model="snackbar">
     This website uses cookies. I promise they won't steal your data!
     <v-btn color="blue" text @click="toggleValues">Close</v-btn>
   </v-snackbar>

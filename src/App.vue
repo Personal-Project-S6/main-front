@@ -34,6 +34,7 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 import * as SignalR from '@microsoft/signalr'
+import { AxiosRequestConfig } from 'axios'
 
 @Component({
   name: 'App'
@@ -62,6 +63,21 @@ export default class App extends Vue {
   mounted () {
     this.setupSignalR()
   }
+
+  // async storeBearerToken () {
+  //   // // Get the access token from the auth wrapper
+  //   const token = await this.$auth.getIdTokenClaims({})
+  //   const bearer = token?.__raw
+  //
+  //   localStorage.setItem('token', JSON.stringify(bearer))
+  //
+  //   const settings = {
+  //     headers: { 'content-type': 'application/json' },
+  //     body: '{"client_id":"RzFzt7NwPKc333FoJnUPkCYkNqtQ51lG","client_secret":"zB6Qrj5izAChfNRMx28Bg6boruRA9WfRtiKERRjjBdHtNvL1YFSPBl5-vGFMzUcU","audience":"personal-gateway.teaguemm.com","grant_type":"client_credentials"}'
+  //   }
+  //
+  //   await this.$http.post('https://teaguemm.eu.auth0.com/oauth/token', settings).then(args => console.log(args))
+  // }
 
   setupSignalR () {
     const connection = new SignalR.HubConnectionBuilder().withUrl('https://localhost:5001/wss/BattleHub').build()

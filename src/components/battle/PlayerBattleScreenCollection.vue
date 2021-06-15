@@ -48,7 +48,13 @@ export default class PlayerBattleScreenCollection extends Vue {
   }
 
   getPlayerRoster () {
-    this.$http.get(`${this.$store.getters.g_gateway}/Character`).then((response) => {
+    const options = {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('access_token')}`
+      }
+    }
+
+    this.$http.get(`${this.$store.getters.g_gateway}/Character`, options).then((response) => {
       this.playerRoster = response.data
     })
   }
