@@ -34,33 +34,15 @@ export default class AvailableMissions extends Vue {
   }
 
   async getNewMissions () {
-    await this.$http
-      .post(
-        'https://teaguemm.eu.auth0.com/oauth/token',
-        {
-          client_id: 'tP3aqhMyfLzdJgu1cb2ODReo3Pk4CQ4g',
-          client_secret:
-            'vpCL5Ec5P1E1HCC-IgWXw3FXQ7XasmSXm_X7PFylFXP7MgebG8j52FSPHXT7TNuK',
-          audience: 'personal-gateway.teaguemm.com',
-          grant_type: 'client_credentials'
-        },
-        { headers: { 'content-type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:8080' } }
-      )
-      .then((response) => {
-        const token = response.data
-        console.log('Look here: ')
-        console.log(token)
-        localStorage.setItem('access_token', token.access_token)
-        const options = {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem('access_token')}`
-          }
-        }
+    const options = {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('access_token')}`
+      }
+    }
 
-        this.$http.get(`${this.$store.getters.g_gateway}/Mission`, options).then((response) => {
-          console.log(this.missions = response.data)
-        })
-      })
+    this.$http.get(`${this.$store.getters.g_gateway}/Mission`, options).then((response) => {
+      console.log(this.missions = response.data)
+    })
   }
 
   setMission (mission: any) {

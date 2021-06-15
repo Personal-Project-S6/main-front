@@ -43,6 +43,7 @@ export default class App extends Vue {
   login () {
     console.log('Logging in')
     this.$auth.loginWithRedirect({})
+    this.setupToken()
   }
 
   logout () {
@@ -50,6 +51,8 @@ export default class App extends Vue {
     this.$auth.logout({
       returnTo: window.location.origin
     })
+    localStorage.clear()
+    this.$store.state.mission = {}
   }
 
   toggleLanguage () {
@@ -62,6 +65,27 @@ export default class App extends Vue {
 
   mounted () {
     this.setupSignalR()
+  }
+
+  async setupToken () {
+    await this.$http
+      .post(
+        'https://teaguemm.eu.auth0.com/oauth/token',
+        {
+          client_id: 'tP3aqhMyfLzdJgu1cb2ODReo3Pk4CQ4g',
+          client_secret:
+            'vpCL5Ec5P1E1HCC-IgWXw3FXQ7XasmSXm_X7PFylFXP7MgebG8j52FSPHXT7TNuK',
+          audience: 'personal-gateway.teaguemm.com',
+          grant_type: 'client_credentials'
+        },
+        { headers: { 'content-type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:8080' } }
+      )
+      .then((response) => {
+        const token = response.data
+        console.log('Look here: ')
+        console.log(token)
+        localStorage.setItem('access_token', token.access_token)
+      })
   }
 
   setupSignalR () {
