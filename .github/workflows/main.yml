@@ -25,7 +25,7 @@ jobs:
       - name: Docker login
         run: docker login ghcr.io -u teaguemurm -p ${{ secrets.GITHUB_TOKEN }}
       - name: Build env file
-        run: printf "VUE_APP_GATEWAY=http://personal-gateway.teaguemm.com" > .env
+        run: printf "VUE_APP_GATEWAY=https://personal-gateway.teaguemm.com" > .env
       - name: Docker build
         run: docker build -t ghcr.io/personal-project-s6/main-front/main-front-image:$GITHUB_SHA -f Dockerfile .;
       - name: Docker publish
