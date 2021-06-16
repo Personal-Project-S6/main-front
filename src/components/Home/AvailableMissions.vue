@@ -40,7 +40,7 @@ export default class AvailableMissions extends Vue {
       }
     }
 
-    this.$http.get(`${this.$store.getters.g_gateway}/Mission`, options).then((response) => {
+    this.$http.get(`${process.env.VUE_APP_GATEWAY}/api/Mission`, options).then((response) => {
       console.log(this.missions = response.data)
     })
   }

@@ -24,18 +24,13 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Docker login
         run: docker login ghcr.io -u teaguemurm -p ${{ secrets.GITHUB_TOKEN }}
+      - name: Build env file
+        run: printf "VUE_APP_GATEWAY=http://personal-gateway.teaguemm.com" > .env
       - name: Docker build
         run: docker build -t ghcr.io/personal-project-s6/main-front/main-front-image:$GITHUB_SHA -f Dockerfile .;
       - name: Docker publish
         run: docker push ghcr.io/personal-project-s6/main-front/main-front-image:$GITHUB_SHA
-
-#      - name: Setup k8s config
-#        run: |
-#          mkdir -p /home/ubuntu/.kube
-#          echo "${{ secrets.KUBECONFIG }}" >> /home/ubuntu/.kube/config
-
       - name: Install helm3
         run: sudo snap install helm --classic
-
       - name: Deploy microservice
         run: helm upgrade main-front-image ./k8s -i -n pps6 --set tag=${{ github.sha }} --kubeconfig '/home/ubuntu/.kube/config'

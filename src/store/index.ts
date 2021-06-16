@@ -7,7 +7,6 @@ export default new Vuex.Store({
   state: {
     userId: '',
     userName: '',
-    gateway: 'https://localhost:5001/api',
     mission: {},
     resolvedMissions: []
   },
@@ -25,9 +24,6 @@ export default new Vuex.Store({
     },
     g_userName (state) {
       return state.userName
-    },
-    g_gateway (state) {
-      return state.gateway
     },
     g_mission (state) {
       return state.mission

@@ -78,7 +78,7 @@ export default class App extends Vue {
           audience: 'personal-gateway.teaguemm.com',
           grant_type: 'client_credentials'
         },
-        { headers: { 'content-type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:8080' } }
+        { headers: { 'content-type': 'application/json' } }
       )
       .then((response) => {
         const token = response.data
@@ -89,27 +89,28 @@ export default class App extends Vue {
   }
 
   setupSignalR () {
-    const connection = new SignalR.HubConnectionBuilder().withUrl('https://localhost:5001/wss/BattleHub', { accessTokenFactory: () => localStorage.getItem('access_token')! }).build()
+    console.log(`Gateway: ${process.env.VUE_APP_GATEWAY}`)
+    const connection = new SignalR.HubConnectionBuilder().withUrl(`${process.env.VUE_APP_GATEWAY}/wss/BattleHub`, { accessTokenFactory: () => localStorage.getItem('access_token')! }).build()
     connection.on('receiveBattleOutcome', args => {
       console.log('Response: ')
       console.log(args)
       // If there are already reports stored
-      if (localStorage.getItem('battleReports')) {
-        const currentItems = JSON.parse(localStorage.getItem('battleReports') || '{}')
-        const updatedReports = [{}]
-
-        for (const item in currentItems) {
-          updatedReports.push(item)
-        }
-        updatedReports.push(args)
-
-        localStorage.setItem('battleReports', JSON.stringify(updatedReports))
-      } else {
-        const report = { args }
-        localStorage.setItem('battleReports', JSON.stringify(report))
-      }
-
-      console.log(localStorage.battleReports)
+      // if (localStorage.getItem('battleReports')) {
+      //   const currentItems = JSON.parse(localStorage.getItem('battleReports') || '{}')
+      //   const updatedReports = [{}]
+      //
+      //   for (const item in currentItems) {
+      //     updatedReports.push(item)
+      //   }
+      //   updatedReports.push(args)
+      //
+      //   localStorage.setItem('battleReports', JSON.stringify(updatedReports))
+      // } else {
+      //   const report = { args }
+      //   localStorage.setItem('battleReports', JSON.stringify(report))
+      // }
+      //
+      // console.log(localStorage.battleReports)
     })
     connection.start().then(() => console.log('SignalR connected'))
   }
