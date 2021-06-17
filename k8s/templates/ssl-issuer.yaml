@@ -1,14 +1,14 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-prod
-  namespace: cert-manager
+  name: ssl-issuer
+  namespace: pps6
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
     email: t.murraymarshall@student.fontys.nl
     privateKeySecretRef:
-      name: letsencrypt-prod
+      name: ssl-issuer
     solvers:
     - http01:
         ingress:
