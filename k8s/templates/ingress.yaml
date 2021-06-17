@@ -3,8 +3,6 @@ kind: Ingress
 metadata:
   name: {{ .Chart.Name }}-ingress
   namespace: pps6
-  annotations:
-    cert-manager.io/issuer: "ssl-issuer"
 spec:
   tls:
   - hosts:
