@@ -4,10 +4,6 @@ metadata:
   name: {{ .Chart.Name }}-ingress
   namespace: pps6
 spec:
-  tls:
-  - hosts:
-    - main-front.teaguemm.com
-    secretName: tls-main-front
   rules:
   - host: main-front.teaguemm.com
     http:
